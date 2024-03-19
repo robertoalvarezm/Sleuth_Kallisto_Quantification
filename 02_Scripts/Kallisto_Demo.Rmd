@@ -3,6 +3,7 @@ title: "Sleuth RNA-Seq Tutorial - Arabidopsis"
 output:
   html_document:
     df_print: paged
+    
 ---
 
 This tutorial will take you through a sample RNA-Seq analysis using [kallisto](https://pachterlab.github.io/kallisto/about), using an RNA-Seq R package [Sleuth](https://pachterlab.github.io/sleuth/about). This tutorial is based on the one by the [Pachter lab](https://pachterlab.github.io/sleuth_walkthroughs/boj/analysis.html)
