@@ -196,7 +196,7 @@ Now we need to run a few functions that will test for differential expression (a
 
 First we will create a model
 
-```{r}
+```{r include=FALSE}
 so2 <- sleuth_fit(so, ~genotype_variation_s, 'full')
 so2 <- sleuth_fit(so, ~1, 'reduced')
 so2 <- sleuth_lrt(so, 'reduced', 'full')
@@ -225,5 +225,5 @@ so <- sleuth_wt(so, wald_test)
 And start a Shiny Browser
 
 ```{r}
-sleuth_live(so)
+#sleuth_live(so)
 ```
