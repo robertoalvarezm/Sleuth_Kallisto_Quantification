@@ -1,5 +1,5 @@
 ---
-title: "Sleuth_Kallisto"
+title: "Sleuth and Kallisto"
 author: "Roberto Álvarez"
 format: revealjs
 editor: visual
@@ -10,6 +10,93 @@ editor: visual
 
 This tutorial will take you through a sample RNA-Seq analysis using [kallisto](https://pachterlab.github.io/kallisto/about), using an RNA-Seq R package [Sleuth](https://pachterlab.github.io/sleuth/about). This tutorial is based on the one by the [Pachter lab](https://pachterlab.github.io/sleuth_walkthroughs/boj/analysis.html)
 
+## Paso 1: Cargar Sleuth y bibliotecas adicionales
+
+
+
+```{r}
+#| echo: true
+library(sleuth)
+library("gridExtra")
+library("cowplot")
+```
+
+
+## BiomaRt
+
+
+We will also use [biomaRt](https://bioconductor.org/packages/release/bioc/html/biomaRt.html) tools will allow us to pull in recognizable gene names from a database.
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+#| echo: true
+library("biomaRt")
+```
+
+
+
+## Paso 2:  Load experimental design and label kallisto outputs with metadata
+
+### Locate sample names and describe our experimental design
+
+We need to provide Sleuth with our sample names:
+
+```{r}
+#| echo: true
+sample_id <- dir(file.path("01_Raw_Data/kallisto_quant_output/"))
+sample_id
+```
+
+
+## Resultados
+
+We also need to get the file paths to our results files.
+```{r}
+#| echo: true
+kal_dirs <- file.path("01_Raw_Data/kallisto_quant_output/", sample_id)
+```
+
+## Nombre descriptivos
+
+We also need a table that provides more meaningful names for describing our experiment...
+
+```{r}
+s2c <- read.table(file.path("01_Raw_Data/kallisto_demo.tsv"),
+                  header = TRUE,
+                  stringsAsFactors = FALSE,
+                  sep = "\t")
+s2c
+```
+
+## Tabla
+We will add our file paths to the table
+
+```{r}
+s2c <- dplyr::mutate(s2c, path = kal_dirs)
+```
+
+Let's view the table we have created:
+```{r}
+s2c
+```
+
+## Tabla bonita
+
+Let's view the table we have created:
+```{r}
+library(DT)
+DT::datatable(s2c)
+```
+
+
+## Step 3: Load gene names from Ensembl
+
+Next we need to determine which biomaRt to use. This can be a little complex so be sure to read their [documentation](https://www.bioconductor.org/packages/devel/bioc/vignettes/biomaRt/inst/doc/biomaRt.html). This [blog post](https://nsaunders.wordpress.com/2015/04/28/some-basics-of-biomart/) is also helpful.
+
+```{r}
+marts <- listMarts()
+marts
+```
 
 ## Quarto
 

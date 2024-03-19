@@ -145,7 +145,7 @@ so <- sleuth_prep(s2c,
 
 
 ```{r}
-#saveRDS(so,file="../03_Results/so.RDS")
+saveRDS(so,file="../03_Results/so.RDS")
 readRDS(file="../03_Results/so.RDS")
 ```
 
@@ -196,7 +196,7 @@ Now we need to run a few functions that will test for differential expression (a
 
 First we will create a model
 
-```{r include=FALSE}
+```{r include=FALSE, error=TRUE}
 so2 <- sleuth_fit(so, ~genotype_variation_s, 'full')
 so2 <- sleuth_fit(so, ~1, 'reduced')
 so2 <- sleuth_lrt(so, 'reduced', 'full')

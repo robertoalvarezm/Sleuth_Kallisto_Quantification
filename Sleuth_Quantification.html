@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.3.361">
 
   <meta name="author" content="Roberto Álvarez">
-  <title>Sleuth_Kallisto</title>
+  <title>Sleuth and Kallisto</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -29,6 +29,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="Sleuth_Quantification_files/libs/revealjs/dist/theme/quarto.css">
   <link href="Sleuth_Quantification_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -319,13 +384,23 @@
       margin-right: 0; 
     }
   </style>
+  
+  <script src="Sleuth_Quantification_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+  <link href="Sleuth_Quantification_files/libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+  <script src="Sleuth_Quantification_files/libs/datatables-binding-0.32/datatables.js"></script>
+  <script src="Sleuth_Quantification_files/libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <link href="Sleuth_Quantification_files/libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+  <link href="Sleuth_Quantification_files/libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
+  <script src="Sleuth_Quantification_files/libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+  <link href="Sleuth_Quantification_files/libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+  <script src="Sleuth_Quantification_files/libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
 </head>
 <body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Sleuth_Kallisto</h1>
+  <h1 class="title">Sleuth and Kallisto</h1>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -339,6 +414,130 @@ Roberto Álvarez
 <section id="sleuth-from-kallisto" class="slide level2">
 <h2>Sleuth from Kallisto</h2>
 <p>This tutorial will take you through a sample RNA-Seq analysis using <a href="https://pachterlab.github.io/kallisto/about">kallisto</a>, using an RNA-Seq R package <a href="https://pachterlab.github.io/sleuth/about">Sleuth</a>. This tutorial is based on the one by the <a href="https://pachterlab.github.io/sleuth_walkthroughs/boj/analysis.html">Pachter lab</a></p>
+</section>
+<section id="paso-1-cargar-sleuth-y-bibliotecas-adicionales" class="slide level2">
+<h2>Paso 1: Cargar Sleuth y bibliotecas adicionales</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(sleuth)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(<span class="st">"gridExtra"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(<span class="st">"cowplot"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="biomart" class="slide level2">
+<h2>BiomaRt</h2>
+<p>We will also use <a href="https://bioconductor.org/packages/release/bioc/html/biomaRt.html">biomaRt</a> tools will allow us to pull in recognizable gene names from a database.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(<span class="st">"biomaRt"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="paso-2-load-experimental-design-and-label-kallisto-outputs-with-metadata" class="slide level2">
+<h2>Paso 2: Load experimental design and label kallisto outputs with metadata</h2>
+<h3 id="locate-sample-names-and-describe-our-experimental-design">Locate sample names and describe our experimental design</h3>
+<p>We need to provide Sleuth with our sample names:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>sample_id <span class="ot">&lt;-</span> <span class="fu">dir</span>(<span class="fu">file.path</span>(<span class="st">"01_Raw_Data/kallisto_quant_output/"</span>))</span>
+<span id="cb3-2"><a href="#cb3-2"></a>sample_id</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "SRR1761506_R1_001" "SRR1761507_R1_002" "SRR1761508_R1_003"
+ [4] "SRR1761509_R1_004" "SRR1761510_R1_005" "SRR1761511_R1_006"
+ [7] "SRR1761512_R1_007" "SRR1761513_R1_008" "SRR1761514_R1_009"
+[10] "SRR1761515_R1_010" "SRR1761516_R1_011" "SRR1761517_R1_012"
+[13] "SRR1761518_R1_013" "SRR1761519_R1_014" "SRR1761519_R1_015"
+[16] "SRR1761521_R1_016" "SRR1761522_R1_017" "SRR1761523_R1_018"</code></pre>
+</div>
+</div>
+</section>
+<section id="resultados" class="slide level2">
+<h2>Resultados</h2>
+<p>We also need to get the file paths to our results files.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>kal_dirs <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="st">"01_Raw_Data/kallisto_quant_output/"</span>, sample_id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="nombre-descriptivos" class="slide level2">
+<h2>Nombre descriptivos</h2>
+<p>We also need a table that provides more meaningful names for describing our experiment…</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>                 sample genotype_variation_s treatment_s
+1     pair01_wt_mock_r1            wild type        mock
+2     pair02_wt_mock_r2            wild type        mock
+3     pair03_wt_mock_r3            wild type        mock
+4      pair04_wt_aba_r1            wild type         ABA
+5      pair05_wt_aba_r2            wild type         ABA
+6      pair06_wt_aba_r3            wild type         ABA
+7  pair07_ros13_mock_r1               ros1-3        mock
+8  pair08_ros13_mock_r2               ros1-3        mock
+9  pair09_ros13_mock_r3               ros1-3        mock
+10  pair10_ros13_aba_r1               ros1-3         ABA
+11  pair11_ros13_aba_r2               ros1-3         ABA
+12  pair12_ros13_aba_r3               ros1-3         ABA
+13 pair13_ros14_mock_r1               ros1-4        mock
+14 pair14_ros14_mock_r2               ros1-4        mock
+15 pair15_ros14_mock_r3               ros1-4        mock
+16  pair16_ros14_aba_r1               ros1-4         ABA
+17  pair17_ros14_aba_r2               ros1-4         ABA
+18  pair18_ros14_aba_r3               ros1-4         ABA</code></pre>
+</div>
+</div>
+</section>
+<section id="tabla" class="slide level2">
+<h2>Tabla</h2>
+<p>We will add our file paths to the table</p>
+<p>Let’s view the table we have created:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>                 sample genotype_variation_s treatment_s
+1     pair01_wt_mock_r1            wild type        mock
+2     pair02_wt_mock_r2            wild type        mock
+3     pair03_wt_mock_r3            wild type        mock
+4      pair04_wt_aba_r1            wild type         ABA
+5      pair05_wt_aba_r2            wild type         ABA
+6      pair06_wt_aba_r3            wild type         ABA
+7  pair07_ros13_mock_r1               ros1-3        mock
+8  pair08_ros13_mock_r2               ros1-3        mock
+9  pair09_ros13_mock_r3               ros1-3        mock
+10  pair10_ros13_aba_r1               ros1-3         ABA
+11  pair11_ros13_aba_r2               ros1-3         ABA
+12  pair12_ros13_aba_r3               ros1-3         ABA
+13 pair13_ros14_mock_r1               ros1-4        mock
+14 pair14_ros14_mock_r2               ros1-4        mock
+15 pair15_ros14_mock_r3               ros1-4        mock
+16  pair16_ros14_aba_r1               ros1-4         ABA
+17  pair17_ros14_aba_r2               ros1-4         ABA
+18  pair18_ros14_aba_r3               ros1-4         ABA
+                                                   path
+1  01_Raw_Data/kallisto_quant_output//SRR1761506_R1_001
+2  01_Raw_Data/kallisto_quant_output//SRR1761507_R1_002
+3  01_Raw_Data/kallisto_quant_output//SRR1761508_R1_003
+4  01_Raw_Data/kallisto_quant_output//SRR1761509_R1_004
+5  01_Raw_Data/kallisto_quant_output//SRR1761510_R1_005
+6  01_Raw_Data/kallisto_quant_output//SRR1761511_R1_006
+7  01_Raw_Data/kallisto_quant_output//SRR1761512_R1_007
+8  01_Raw_Data/kallisto_quant_output//SRR1761513_R1_008
+9  01_Raw_Data/kallisto_quant_output//SRR1761514_R1_009
+10 01_Raw_Data/kallisto_quant_output//SRR1761515_R1_010
+11 01_Raw_Data/kallisto_quant_output//SRR1761516_R1_011
+12 01_Raw_Data/kallisto_quant_output//SRR1761517_R1_012
+13 01_Raw_Data/kallisto_quant_output//SRR1761518_R1_013
+14 01_Raw_Data/kallisto_quant_output//SRR1761519_R1_014
+15 01_Raw_Data/kallisto_quant_output//SRR1761519_R1_015
+16 01_Raw_Data/kallisto_quant_output//SRR1761521_R1_016
+17 01_Raw_Data/kallisto_quant_output//SRR1761522_R1_017
+18 01_Raw_Data/kallisto_quant_output//SRR1761523_R1_018</code></pre>
+</div>
+</div>
+</section>
+<section id="tabla-bonita" class="slide level2">
+<h2>Tabla bonita</h2>
+<p>Let’s view the table we have created:</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<div class="datatables html-widget html-fill-item" id="htmlwidget-2933f5c223f903a911d0" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-2933f5c223f903a911d0">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18"],["pair01_wt_mock_r1","pair02_wt_mock_r2","pair03_wt_mock_r3","pair04_wt_aba_r1","pair05_wt_aba_r2","pair06_wt_aba_r3","pair07_ros13_mock_r1","pair08_ros13_mock_r2","pair09_ros13_mock_r3","pair10_ros13_aba_r1","pair11_ros13_aba_r2","pair12_ros13_aba_r3","pair13_ros14_mock_r1","pair14_ros14_mock_r2","pair15_ros14_mock_r3","pair16_ros14_aba_r1","pair17_ros14_aba_r2","pair18_ros14_aba_r3"],["wild type","wild type","wild type","wild type","wild type","wild type","ros1-3","ros1-3","ros1-3","ros1-3","ros1-3","ros1-3","ros1-4","ros1-4","ros1-4","ros1-4","ros1-4","ros1-4"],["mock","mock","mock","ABA","ABA","ABA","mock","mock","mock","ABA","ABA","ABA","mock","mock","mock","ABA","ABA","ABA"],["01_Raw_Data/kallisto_quant_output//SRR1761506_R1_001","01_Raw_Data/kallisto_quant_output//SRR1761507_R1_002","01_Raw_Data/kallisto_quant_output//SRR1761508_R1_003","01_Raw_Data/kallisto_quant_output//SRR1761509_R1_004","01_Raw_Data/kallisto_quant_output//SRR1761510_R1_005","01_Raw_Data/kallisto_quant_output//SRR1761511_R1_006","01_Raw_Data/kallisto_quant_output//SRR1761512_R1_007","01_Raw_Data/kallisto_quant_output//SRR1761513_R1_008","01_Raw_Data/kallisto_quant_output//SRR1761514_R1_009","01_Raw_Data/kallisto_quant_output//SRR1761515_R1_010","01_Raw_Data/kallisto_quant_output//SRR1761516_R1_011","01_Raw_Data/kallisto_quant_output//SRR1761517_R1_012","01_Raw_Data/kallisto_quant_output//SRR1761518_R1_013","01_Raw_Data/kallisto_quant_output//SRR1761519_R1_014","01_Raw_Data/kallisto_quant_output//SRR1761519_R1_015","01_Raw_Data/kallisto_quant_output//SRR1761521_R1_016","01_Raw_Data/kallisto_quant_output//SRR1761522_R1_017","01_Raw_Data/kallisto_quant_output//SRR1761523_R1_018"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>sample<\/th>\n      <th>genotype_variation_s<\/th>\n      <th>treatment_s<\/th>\n      <th>path<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"sample","targets":1},{"name":"genotype_variation_s","targets":2},{"name":"treatment_s","targets":3},{"name":"path","targets":4}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
 </section>
 <section id="quarto" class="slide level2">
 <h2>Quarto</h2>
