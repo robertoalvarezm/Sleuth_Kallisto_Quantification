@@ -118,6 +118,7 @@ Next we need to determine which biomaRt to use. This can be a little complex so 
 
 
 ```{r}
+#| echo: true
 marts <- listMarts()
 marts
 ```
@@ -129,6 +130,7 @@ If you are not working with these Ensembl data bases you may want to check out d
 
 
 ```{r}
+#| echo: true
 marts <- listMarts(host = "plants.ensembl.org")
 marts
 ```
@@ -163,6 +165,7 @@ Now we want to get specific attributes from the list of genes we can import from
 
 
 ```{r}
+#| echo: true
 datatable(listAttributes(plants_mart))
 ```
 
@@ -174,6 +177,7 @@ want to come back for. We must get the transcript id because these are the names
 
 
 ```{r}
+#| echo: true
 plants_mart <- useMart("plants_mart", dataset = "athaliana_eg_gene", host="plants.ensembl.org" )
 t2g <- getBM(attributes = c("ensembl_transcript_id",
                             "ensembl_gene_id",
@@ -239,6 +243,7 @@ Next, we should check to see if our samples (and replicates) cluster on a PCA (a
 
 
 ```{r}
+#| echo: true
 library(cowplot)
 so<-readRDS(file="03_Results/so.RDS")
 ggplot2::theme_set(theme_cowplot())
@@ -249,7 +254,7 @@ plot_pca(so, color_by = 'genotype_variation_s', text_labels = TRUE)
 
 
 ```{r}
-
+#| echo: true
 ggplot2::theme_set(theme_cowplot())
 g<-plot_pca(so, color_by = 'genotype_variation_s', text_labels = TRUE)
 library(plotly)
@@ -265,6 +270,7 @@ Let's try plotting by treatment
 
 
 ```{r}
+#| echo: true
 plot_pca(so, color_by = 'treatment_s', text_labels = TRUE)
 ```
 
@@ -275,6 +281,7 @@ We can also see genes involved in the the 1st PC by looking at the loadings (pri
 
 
 ```{r}
+#| echo: true
 plot_loadings(so, pc_input = 1)
 ```
 
@@ -285,6 +292,7 @@ plot_loadings(so, pc_input = 1)
 Let's see how this "influential" gene (at least as far as PCA tells us) looks by condition
 
 ```{r}
+#| echo: true
 plot_bootstrap(so, 'AT2G34420.1', color_by = 'genotype_variation_s')
 ```
 
@@ -295,6 +303,7 @@ Let's see how this "influential" gene (at least as far as PCA tells us) looks by
 
 
 ```{r}
+#| echo: true
 plot_bootstrap(so, 'AT2G34420.1', color_by = 'treatment_s')
 ```
 
@@ -327,12 +336,14 @@ Now we can get the results of this analysis
 
 
 ```{r}
+#| echo: true
 full_results <- sleuth_results(so2, 'reduced:full', 'lrt',
                                show_all = FALSE)
 library(DT)
 datatable(head(full_results))
 
 ```
+
 
 
 ## Prueba de Wald
