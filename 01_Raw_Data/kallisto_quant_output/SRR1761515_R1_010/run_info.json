@@ -1,0 +1,9 @@
+{
+	"n_targets": 48359,
+	"n_bootstraps": 50,
+	"n_processed": 4236768,
+	"kallisto_version": "0.42.3",
+	"index_version": 10,
+	"start_time": "Wed Dec  2 16:50:00 2020",
+	"call": "kallisto quant -i Arabidopsis_thaliana.TAIR10.36.cdna.all.fa.index -o SRR1761515_R1_010 -b 50 -l -s SRR1761515_R1_010.fastq.gz_fp.trimmed.fastq.gz SRR1761516_R2_011.fastq.gz_rp.trimmed.fastq.gz"
+}
