@@ -1,8 +1,12 @@
 ---
 title: "Sleuth and Kallisto"
 author: "Roberto Álvarez"
-format: revealjs
+#format: revealjs
 editor: visual
+format:
+  html:
+    toc: true
+    toc_float: true
 ---
 
 
@@ -97,6 +101,56 @@ Next we need to determine which biomaRt to use. This can be a little complex so 
 marts <- listMarts()
 marts
 ```
+
+## Step 3: Load gene names from Ensembl
+
+If you are not working with these Ensembl data bases you may want to check out documentation on [using BiomaRts other than Ensembl](https://bioconductor.org/packages/release/bioc/vignettes/biomaRt/inst/doc/biomaRt.html#using-a-biomart-other-than-ensembl). We are using plants, so...
+
+```{r}
+marts <- listMarts(host = "plants.ensembl.org")
+marts
+```
+
+
+## Step 3: Load gene names from Ensembl
+For now, remember that we will want to use `plants_mart`.
+
+Next, we need to choose a specific data set.
+
+```{r}
+plants_mart <- useMart("plants_mart", host = "plants.ensembl.org" )
+datatable(listDatasets(plants_mart))
+
+```
+
+## Seleccionamos Arabidopsis thaliana
+
+After a little looking, its the `athaliana_eg_gene` data set that we need. Finally, we need to update our `plants_mart` to be more specific.
+
+```{r}
+#| echo: true
+plants_mart <- useMart("plants_mart", dataset = "athaliana_eg_gene", host="plants.ensembl.org" )
+```
+
+Now we want to get specific attributes from the list of genes we can import from biomart
+
+```{r}
+listAttributes(plants_mart)
+```
+
+
+## Seleccionamos Arabidopsis thaliana
+
+
+
+Now we want to get specific attributes from the list of genes we can import from biomart
+
+```{r}
+datatable(listAttributes(plants_mart))
+```
+
+
+
 
 ## Quarto
 
